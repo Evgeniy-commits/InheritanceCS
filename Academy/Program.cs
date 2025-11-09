@@ -49,6 +49,7 @@ namespace Academy
 			graduate.Info();
 #endif
 
+			Streamer streamer = new Streamer();
 #if WRITE_TO_FILE
 			Human[] group =
 				{
@@ -67,68 +68,12 @@ namespace Academy
 				Console.WriteLine(group[i]);
 				Console.WriteLine(delimiter);
 			}
-			Save(group, "group.txt"); 
+			streamer.Save(group, "group.txt"); 
+
 #endif
+			Human[] group = streamer.Load("group.txt");
+			streamer.Print(group);
 
-			Human[] group = Load("group.txt");
-			Print(group);
-
-		}
-		static void Save(Human[] group, string filename)
-		{
-			StreamWriter writer = new StreamWriter(filename);
-			for (int i = 0; i < group.Length; i++)
-			{
-				writer.WriteLine(group[i].ToStringCSV());
-			}
-			writer.Close();
-			System.Diagnostics.Process.Start("notepad", filename);
-		}
-		static void Print(Human[] group)
-		{
-			for (int i = 0; i < group.Length; i++)
-			{
-				Console.WriteLine(group[i]);
-				Console.WriteLine(delimiter);
-			}
-			Console.WriteLine();
-		}
-
-		static Human[] Load(string filename)
-		{
-			List<Human> group = new List<Human>();
-			StreamReader reader = new StreamReader(filename);
-			try
-			{
-				while (!reader.EndOfStream)
-				{
-					string buffer = reader.ReadLine();
-					string[] values = buffer.Split(',');
-					//Human human = HumanFactory(values.First());
-					//human.Init(values);
-					//group.Add(human);
-					group.Add(HumanFactory(values[0]).Init(values));
-				}
-			}
-			catch (Exception ex) 
-			{ 
-				Console.WriteLine(ex.Message);
-			}
-
-			reader.Close();
-			return group.ToArray();
-		}
-		static Human HumanFactory(string type)
-		{
-			Human human = null;
-			switch (type)
-			{
-				case "Human": human = new Human("", "", 0); break;
-				case "Student": human = new Student("", "", 0, "", "", 0, 0); break;
-				case "Graduate": human = new Graduate("", "", 0, "", "", 0, 0, ""); break;
-				case "Teacher": human = new Teacher("", "", 0, "", 0); break;
-			}
-			return human;
 		}
 	}
 }
