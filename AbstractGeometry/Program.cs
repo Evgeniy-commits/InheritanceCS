@@ -23,12 +23,22 @@ namespace AbstractGeometry
 			PaintEventArgs e = new PaintEventArgs(graphics, window_rect );
 			//e.Graphics.DrawRectangle(new Pen(Color.Red, 5), 300, 200, 500, 200);
 
-			Rectangle rectangle = new Rectangle(100, 40, 300, 50, 3, Color.AliceBlue);
+			Rectangle rectangle = new Rectangle(100, 40, 500, 50, 3, Color.AliceBlue);
+			rectangle.Info(e);
+			Square square = new Square(100, 300, 150, 3, Color.Blue);
 			rectangle.Info(e);
 
+			Circle circle = new Circle(50, 500, 500, 3, Color.Green);
+			circle.Info(e);
+
+			EquilateralTriangle equilateral = new EquilateralTriangle(50, 250, 250, 3, Color.Yellow);
+			equilateral.Info(e);
 			while (true) 
 			{
-				rectangle.Draw(e);
+				//rectangle.Draw(e);
+				//square.Draw(e);
+				//circle.Draw(e);
+				equilateral.Draw(e);
 			}
 			
 		}
