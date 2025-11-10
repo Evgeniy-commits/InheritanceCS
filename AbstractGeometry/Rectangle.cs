@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AbstractGeometry
 {
-	internal class Rectangle : Shape
+	internal class Rectangle : Shape, IHaveDiagonal
 	{
 		double width;
 		double height;
@@ -21,6 +21,7 @@ namespace AbstractGeometry
 			get => height; set => height = FilterSize(value);
 		}
 
+
 		public Rectangle
 			(
 				double width, double height,
@@ -32,13 +33,23 @@ namespace AbstractGeometry
 		}
 		public override double GetArea() => Width * Height;
 		public override double GetPerimetr() => 2 * (Height + Width);
-
+		public double GetDiagonal() => Math.Sqrt(Math.Pow(Width, 2) + Math.Pow(Height, 2));
+		public void DrawDiagonal(System.Windows.Forms.PaintEventArgs e)
+		{
+			Pen pen = new Pen(Color, 2);
+			e.Graphics.DrawLine
+				(
+					pen,
+					StartX, StartY,
+					StartX + (int)Width, StartY + (int)Height
+				);
+		}
 		public override void Draw(System.Windows.Forms.PaintEventArgs e)
 		{
 			Pen pen = new Pen(Color);
 			SolidBrush brush= new SolidBrush(Color.Red);
 			e.Graphics.DrawRectangle(pen, StartX, StartY, (float)Width, (float)Height);
-			e.Graphics.FillRectangle(brush, StartX, StartY, (float)Width, (float)Height);
+			//e.Graphics.FillRectangle(brush, StartX, StartY, (float)Width, (float)Height);
 		}
 
 		public override void Info(System.Windows.Forms.PaintEventArgs e)
@@ -46,7 +57,9 @@ namespace AbstractGeometry
 			Console.WriteLine(this.GetType().ToString().Split('.').Last()+":");
 			Console.WriteLine($"Ширина: {Width}");
 			Console.WriteLine($"Высота: {Height}");
+			Console.WriteLine($"Диагональ: {GetDiagonal()}");
 			base.Info(e);
+			DrawDiagonal(e);
 		}
 	}
 }
