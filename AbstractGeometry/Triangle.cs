@@ -13,8 +13,8 @@ namespace AbstractGeometry
 	abstract class Triangle : Shape
 	{
 		public abstract double GetHeight();
-		public Triangle(int start_x, int start_y, int line_width, Color color)
-			: base(start_x, start_y, line_width, color) { }
+		public Triangle(int startX, int startY, int lineWidth, Color color)
+			: base(startX, startY, lineWidth, color) {}
 		public override void Info(System.Windows.Forms.PaintEventArgs e)
 		{
 			Console.WriteLine($"Высота треугольника: {GetHeight()}");

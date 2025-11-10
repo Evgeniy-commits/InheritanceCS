@@ -20,10 +20,10 @@ namespace AbstractGeometry
 		public EquilateralTriangle
 			(
 			double side,
-			int start_x, int start_y, int line_width, Color color
-			) : base(start_x, start_y, line_width, color)
+			int startX, int startY, int lineWidth, Color color
+			) : base(startX, startY, lineWidth, color)
 		{
-			this.Side = side;
+			Side = side;
 		}
 		public override double GetHeight() => Math.Sqrt(Math.Pow(Side, 2) - Math.Pow(Side / 2, 2));
 		public override double GetArea() => Side * GetHeight() / 2;

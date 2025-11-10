@@ -28,7 +28,7 @@ namespace AbstractGeometry
 			Square square = new Square(100, 300, 150, 3, Color.Blue);
 			rectangle.Info(e);
 
-			Circle circle = new Circle(50, 500, 500, 3, Color.Green);
+			Circle circle = new Circle(100, 500, 200, 3, Color.Yellow);
 			circle.Info(e);
 
 			EquilateralTriangle equilateral = new EquilateralTriangle(50, 250, 250, 3, Color.Yellow);
@@ -37,7 +37,7 @@ namespace AbstractGeometry
 			{
 				//rectangle.Draw(e);
 				//square.Draw(e);
-				//circle.Draw(e);
+				circle.Draw(e);
 				equilateral.Draw(e);
 			}
 			

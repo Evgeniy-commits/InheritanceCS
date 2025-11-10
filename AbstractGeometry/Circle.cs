@@ -17,8 +17,8 @@ namespace AbstractGeometry
 			get => radius;
 			set => radius = FilterSize(value);
 		}
-		public Circle(double radius, int start_x, int start_y, int line_width, Color color)
-			: base(start_x, start_y, line_width, color)
+		public Circle(double radius, int startX, int startY, int lineWidth, Color color)
+			: base(startX, startY, lineWidth, color)
 		{
 			Radius = radius;
 		}
@@ -27,14 +27,14 @@ namespace AbstractGeometry
 		public override void Draw(System.Windows.Forms.PaintEventArgs e)
 		{
 			Pen pen = new Pen(Color, LineWidth);
-			SolidBrush brush = new SolidBrush(Color.Green);
+			SolidBrush brush = new SolidBrush(Color.Yellow);
 			e.Graphics.DrawEllipse(pen, StartX, StartY, (float)(2 * Radius), (float)(2 * Radius));
 			e.Graphics.FillEllipse(brush, StartX, StartY, (float)(2 * Radius), (float)(2 * Radius));
 		}
 		public override void Info(System.Windows.Forms.PaintEventArgs e)
 		{
 			Console.WriteLine();
-			Console.WriteLine(GetType());
+			Console.WriteLine($"{this.GetType()}");
 			Console.WriteLine($"Радиус: {Radius}");
 			Console.WriteLine($"Диаметр: {2 * Radius}");
 			base.Info(e);
